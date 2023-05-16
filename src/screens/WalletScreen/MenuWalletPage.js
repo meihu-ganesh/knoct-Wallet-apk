@@ -15,7 +15,6 @@ export default function MenuWalletPage({navigation}) {
           <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
             <Ionicons name="menu" size={25} color={'#1F2935'} />
           </TouchableOpacity>
-
           <Input
             placeholder="Search"
             variant="outline"

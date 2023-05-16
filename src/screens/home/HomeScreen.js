@@ -77,15 +77,23 @@ export default function HomeScreen() {
           name="DIDNavigationPage"
           component={DIDNavigationPage}
           options={{
-            tabBarIcon: ()=> {
+            tabBarIcon: ({color, size})=> {
+            // tabBarIcon: ()=> {
+              // <View>
+              //   <IconComponentProvider IconComponent={MaterialCommunityIcons}>
+              //     <Icon 
+              //       name="person_pin"
+              //       size={20}
+              //       color='#aaa'
+              //     />
+              //   </IconComponentProvider>
+              // </View>
               <View>
-                <IconComponentProvider IconComponent={MaterialCommunityIcons}>
-                  <Icon 
-                    name="person_pin"
-                    size={20}
-                    color='#aaa'
-                    />
-                </IconComponentProvider>
+                <MaterialCommunityIcons
+                  name="line-scan"
+                  size={size}
+                  color={color}
+                />
               </View>
             }
           }}
