@@ -19,25 +19,24 @@ const DIDPreview = () => {
 
     return (
         <View>
-            {
-                userDIDs.map((item) =>
+            {/* // {
+                //userDIDs.map((item) =>
                 // console.warn(item.dIDName)
                 // <Text>{item.dIDName}</Text>
-                    <View style={styles.previewBox}>
-                        <View style={styles.boxTop}>
-                            <Text style={styles.holderDIDName}>{item.dIDName}</Text>
-                            <Text>More</Text>
-                        </View>
-                        <View style={styles.boxBottom}>
-                            {/* <Text style={styles.holderDIDValue}>{item.dID}</Text> */}
-                            <Text>{item.dID}</Text>
-                            <View>
-                            {/* <View style={styles.btnContainer}> */}
-                                <Button title="Share" color="#6f8" />
-                            </View>
-                        </View>
-                    </View>
-                    )}
+                //    <View style={styles.previewBox}>
+                  //      <View style={styles.boxTop}>
+                    //        <Text style={styles.holderDIDName}>{item.dIDName}</Text>
+                      //      <Text>More</Text>
+                        //</View>
+                        //<View style={styles.boxBottom}>
+                          //  {/* <Text style={styles.holderDIDValue}>{item.dID}</Text> */}
+                            {/* //<Text>{item.dID}</Text>
+                           // <View>
+                            //{/* <View style={styles.btnContainer}> */}
+                              {/* //  <Button title="Share" color="#6f8" />
+                            //</View> */}
+                        {/* //</View> */} 
+                   {/* // )} */}
         </View>
     );
 };

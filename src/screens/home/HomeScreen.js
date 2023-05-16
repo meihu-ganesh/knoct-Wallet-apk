@@ -77,26 +77,34 @@ export default function HomeScreen() {
           name="DIDNavigationPage"
           component={DIDNavigationPage}
           options={{
-            tabBarIcon: ({color, size})=> {
-            // tabBarIcon: ()=> {
-              // <View>
-              //   <IconComponentProvider IconComponent={MaterialCommunityIcons}>
-              //     <Icon 
-              //       name="person_pin"
-              //       size={20}
-              //       color='#aaa'
-              //     />
-              //   </IconComponentProvider>
-              // </View>
+            tabBarIcon: ({color, size}) => (
               <View>
-                <MaterialCommunityIcons
-                  name="line-scan"
-                  size={size}
-                  color={color}
-                />
+                <Ionicons name="person-outline" size={size} color={color} />
               </View>
-            }
+            ),
           }}
+          // options={{
+          //   tabBarIcon: ({color, size})=> {
+          //     tabBarIcon: ()=> {
+          //       <View>
+          //         <IconComponentProvider IconComponent={MaterialCommunityIcons}>
+          //           <Icon 
+          //             name='person_pin'
+          //             size={20}
+          //             color='#aaa'
+          //           />
+          //         </IconComponentProvider>
+          //       </View>
+          //     }
+          //     <View>
+          //       <MaterialCommunityIcons
+          //         name="line-scan"
+          //         size={size}
+          //         color={color}
+          //       />
+          //     </View>
+          //   }
+          // }}
           listeners={({navigation, route}) => ({
             // Onpress Update....
             tabPress: e => {
