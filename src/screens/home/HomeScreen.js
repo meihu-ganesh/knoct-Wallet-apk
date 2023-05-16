@@ -4,12 +4,13 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import { IconComponentProvider, Icon } from '@react-native-material/core';
 import Scan from './Scan';
-
+// import {  } from '@react-native-material/core/lib/typescript/base/IconComponentContext';
 import {Animated, Dimensions, View} from 'react-native';
 import WalletNavigationPage from '../../navigations/WalletNavigationPage';
 import HomePageNavigation from '../../navigations/HomePageNavigation';
+import DIDNavigationPage from '../../navigations/DIDNavigationPage';
 const Tab = createBottomTabNavigator();
 export default function HomeScreen() {
   const tabOffsetValue = useRef(new Animated.Value(0)).current;
@@ -73,6 +74,33 @@ export default function HomeScreen() {
           })}
         />
         <Tab.Screen
+          name="DIDNavigationPage"
+          component={DIDNavigationPage}
+          options={{
+            tabBarIcon: ()=> {
+              <View>
+                <IconComponentProvider IconComponent={MaterialCommunityIcons}>
+                  <Icon 
+                    name="person_pin"
+                    size={20}
+                    color='#aaa'
+                    />
+                </IconComponentProvider>
+              </View>
+            }
+          }}
+          listeners={({navigation, route}) => ({
+            // Onpress Update....
+            tabPress: e => {
+              Animated.spring(tabOffsetValue, {
+                toValue: getWidth() * 2,
+                useNativeDriver: true,
+              }).start();
+            },
+          })}
+        >
+        </Tab.Screen>
+        <Tab.Screen
           name="WalletNavigationPage"
           component={WalletNavigationPage}
           options={{
@@ -86,7 +114,7 @@ export default function HomeScreen() {
             // Onpress Update....
             tabPress: e => {
               Animated.spring(tabOffsetValue, {
-                toValue: getWidth() * 2,
+                toValue: getWidth() * 3,
                 useNativeDriver: true,
               }).start();
             },
@@ -110,5 +138,5 @@ export default function HomeScreen() {
 }
 function getWidth() {
   let width = Dimensions.get('window').width;
-  return width / 3;
+  return width / 4;
 }
