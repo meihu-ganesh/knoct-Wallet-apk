@@ -1,11 +1,34 @@
-import React from "react";
-import {  FlatList, View, Text, StyleSheet } from "react-native";
-import { Button } from "react-native";
+import React, {useState} from "react";
+import {  FlatList, View, Text, StyleSheet, Modal } from "react-native";
+import { Button, TouchableHighlight } from "react-native";
 // import { Button } from "react-native-elements";
 import DIDPreview from "./DIDPreview";
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import DocumentPicker from 'react-native-document-picker';
 
-const DIDContainer = () => {
+const DIDContainer = (props) => {
+    
+    const selectFile = async () => {
+        try {
+            const file = await DocumentPicker.pickSingle({});
+            console.warn(file);
+            console.warn(file.uri);
+        } catch (error) {
+            if(DocumentPicker.isCancelableError(error)) {
+                console.warn("User cancelled the upload" ,error);
+            }
+            if(DocumentPicker.isCancel(error)){
+                console.warn("User cancelled the upload", error);
+            }
+        }
+        
+    };
+    let displayModal = props.show
+    const [showModal, setShowModal] = useState(displayModal);
+    const closeModal = () => {
+        return props.show(false);
 
+    };
     const userDIDs = [
         {
             id: 1,
@@ -18,6 +41,7 @@ const DIDContainer = () => {
             dID : "did:key:weqgtrjuyjftfd22545ar4bdn531se",
         },
     ];
+    // const value = props
 
     return (
         <View>
@@ -30,23 +54,68 @@ const DIDContainer = () => {
                     <View style={styles.previewBox}>
                         <View style={styles.boxTop}>
                             <Text style={styles.didName}>{item.item.dIDName}</Text>
-                            <Text>More</Text>
+                            <View>
+                                <TouchableHighlight onPress={()=> console.warn("More")}>
+                                    <Ionicons name="ellipsis-vertical" size={24} color={"#333"} />
+                                </TouchableHighlight>
+                            </View>
                         </View>
                         <View style={styles.boxBottom}>
                             <Text style={styles.didValue}>{item.item.dID}</Text>
                             <View style={styles.btnContainer}>
-                                <Button
+                                {/* <Button
                                     title="Share"
                                     color="#3f1"
                                     type="outline"
-                                />
-                                {/* <Button title="Share" onPress={()=>{console.warn(item.item.dIDName);}}/> */}
+                                /> */}
+                                <Button title="Share" onPress={()=>{console.warn(item.item.dIDName);}}/>
                             </View>
                         </View>
                     </View>
                 }
                 keyExtractor={item=>item.id}
             />
+            </View>
+            <View>
+                <TouchableHighlight onPress={()=> {console.warn(props.show); console.warn("Modal: " + displayModal)}}>
+                    <Text>see console</Text>
+                </TouchableHighlight>
+                <Modal transparent={true} visible={{showModal}}>
+                    <View style={{backgroundColor: "#000000aa", flex:1, justifyContent:"flex-end"}}>
+                        <View style={styles.bottomModal}>
+                            <View style={{flex:0.5 , flexDirection: "row", justifyContent: "space-between"}}>
+                            <Text style={styles.topHeading}>Add DID</Text>
+                            <TouchableHighlight onPress={()=> console.warn(props.show)}>
+                                <Ionicons name="close-outline" size={27} color={"#333"}/>
+                            </TouchableHighlight>
+                            <TouchableHighlight onPress={()=> setShowModal(false)}>
+                                <Ionicons name="close-outline" size={27} color={"#333"}/>
+                            </TouchableHighlight>
+                            </View>
+                            <TouchableHighlight style={{marginVertical: 0}}>
+                                <View style={styles.addDIDContainer}>
+                                    <Ionicons name="add-circle-outline" size={25} color={"#333"} />
+                                    <View style={{flex: 1, alignContent: "flex-start", marginHorizontal: 15,}}>
+                                        <Text style={styles.didName}>Create DID</Text>
+                                    </View>
+                                    <Ionicons name="chevron-forward-outline" size={20} color={"#333"}/>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight style={{marginVertical: 0}} onPress={selectFile}>
+                                <View style={styles.addDIDContainer}>
+                                    <Ionicons name="code-download-outline"  size={25} color={"#333"} style={{transform: [{rotate: '180deg'}]}} />
+                                    <View style={{flex: 1, alignContent: "flex-start", marginHorizontal: 15,}}>
+                                        <Text style={styles.didName}>Import DID</Text>
+                                    </View>
+                                    <Ionicons name="chevron-forward-outline" size={20} color={"#333"}/>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight onpress={()=> console.warn(props.show)}>
+                                <Text>see console</Text>
+                            </TouchableHighlight>
+                        </View>
+                    </View>
+                </Modal> 
             </View>
         </View>
     );
@@ -86,8 +155,24 @@ const styles = StyleSheet.create({
     btnContainer: {
         width: 100,
     },
-
+    bottomModal:{
+        flex: 0.4,
+        // height: 100,
+        marginHorizontal: 1,
+        padding: 20,
+        borderRadius: 25,
+        backgroundColor: "#eee",
+        justifyContent: "flex-start",
+    },
+    addDIDContainer :{
+        // flex: 1,
+        flexDirection: "row",
+        textAlignVertical: "center",
+        justifyContent: "space-between",
+        padding: 10,
+        marginVertical: 10,
+    },
 });
 
 
-export default DIDContainer;
+export default DIDContainer ;

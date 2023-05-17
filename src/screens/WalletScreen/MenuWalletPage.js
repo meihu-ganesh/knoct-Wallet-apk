@@ -33,7 +33,7 @@ export default function MenuWalletPage({navigation}) {
               />
             }
           />
-          <TouchableOpacity onPress={() => setShowModal(true)}>
+          <TouchableOpacity onPress={() => console.warn("add DID")}>
             <FontAwesome name="plus-square-o" size={25} color={'#1F2935'} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
