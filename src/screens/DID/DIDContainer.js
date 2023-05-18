@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {  FlatList, View, Text, StyleSheet, Modal } from "react-native";
+import {  FlatList, View, Text, StyleSheet, Modal, StatusBar } from "react-native";
 import { Button, TouchableHighlight } from "react-native";
 // import { Button } from "react-native-elements";
 import DIDPreview from "./DIDPreview";
@@ -73,18 +73,15 @@ const DIDContainer = (props) => {
             />
             </View>
             <View>
-                <TouchableHighlight onPress={()=> {console.warn(props.show); console.warn("Modal: " + displayModal)}}>
-                    <Text>see console</Text>
-                </TouchableHighlight>
                 <Modal transparent={true} visible={props.show}>
+                    <StatusBar 
+                        hidden={true}
+                    />
                     <View style={{backgroundColor: "#000000aa", flex:1, justifyContent:"flex-end"}}>
                         <View style={styles.bottomModal}>
                             <View style={{flex:0.5 , flexDirection: "row", justifyContent: "space-between"}}>
                             <Text style={styles.topHeading}>Add DID</Text>
-                            <TouchableHighlight onPress={()=> console.warn(showModal)}>
-                                <Ionicons name="close-outline" size={27} color={"#333"}/>
-                            </TouchableHighlight>
-                            <TouchableHighlight onPress={()=> setShowModal(false)}>
+                            <TouchableHighlight onPress={()=> props.setShowModal(false)}>
                                 <Ionicons name="close-outline" size={27} color={"#333"}/>
                             </TouchableHighlight>
                             </View>
@@ -105,9 +102,6 @@ const DIDContainer = (props) => {
                                     </View>
                                     <Ionicons name="chevron-forward-outline" size={20} color={"#333"}/>
                                 </View>
-                            </TouchableHighlight>
-                            <TouchableHighlight onpress={()=> console.warn(props.show)}>
-                                <Text>see console</Text>
                             </TouchableHighlight>
                         </View>
                     </View>

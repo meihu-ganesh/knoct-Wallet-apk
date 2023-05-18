@@ -30,7 +30,7 @@ const DIDPage = ({navigation}) => {
         </View>
         
           <View>
-            <DIDContainer show={showModal} />
+            <DIDContainer show={showModal} setShowModal={setShowModal} />
           </View>
       </View>
     </SafeAreaView>
