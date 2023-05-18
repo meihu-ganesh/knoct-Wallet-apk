@@ -25,10 +25,6 @@ const DIDContainer = (props) => {
     };
     let displayModal = props.show
     const [showModal, setShowModal] = useState(displayModal);
-    const closeModal = () => {
-        return props.show(false);
-
-    };
     const userDIDs = [
         {
             id: 1,
@@ -63,12 +59,12 @@ const DIDContainer = (props) => {
                         <View style={styles.boxBottom}>
                             <Text style={styles.didValue}>{item.item.dID}</Text>
                             <View style={styles.btnContainer}>
-                                {/* <Button
+                                <Button
                                     title="Share"
-                                    color="#3f1"
+                                    color="#5f5"
                                     type="outline"
-                                /> */}
-                                <Button title="Share" onPress={()=>{console.warn(item.item.dIDName);}}/>
+                                />
+                                {/* <Button title="Share" onPress={()=>{console.warn(item.item.dIDName);}}/> */}
                             </View>
                         </View>
                     </View>
@@ -80,12 +76,12 @@ const DIDContainer = (props) => {
                 <TouchableHighlight onPress={()=> {console.warn(props.show); console.warn("Modal: " + displayModal)}}>
                     <Text>see console</Text>
                 </TouchableHighlight>
-                <Modal transparent={true} visible={{showModal}}>
+                <Modal transparent={true} visible={props.show}>
                     <View style={{backgroundColor: "#000000aa", flex:1, justifyContent:"flex-end"}}>
                         <View style={styles.bottomModal}>
                             <View style={{flex:0.5 , flexDirection: "row", justifyContent: "space-between"}}>
                             <Text style={styles.topHeading}>Add DID</Text>
-                            <TouchableHighlight onPress={()=> console.warn(props.show)}>
+                            <TouchableHighlight onPress={()=> console.warn(showModal)}>
                                 <Ionicons name="close-outline" size={27} color={"#333"}/>
                             </TouchableHighlight>
                             <TouchableHighlight onPress={()=> setShowModal(false)}>
